@@ -2,7 +2,7 @@
 
   require 'helpers.php';
   
-  $pages = ['register', 'login'];
+  $pages = logged_in() ? ['logout'] : ['register', 'login'];
   
 ?>
 
@@ -11,7 +11,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= isset($title)? $title : "I used todo" ?></title>
+  <title><?= isset($title)? ucfirst($title) : "I used todo" ?></title>
   <link rel="stylesheet" href="/assets/bootstrap.min.css">
   <style type="text/css">
     #topNav {
@@ -23,6 +23,9 @@
           background-color: hsla(2, 64%, 63%, 1);
           border-radius: 3px;
           padding-left: 1em;
+      }
+      .nav-item + .nav-item {
+        margin-top: 0.5em;
       }
     }
 
@@ -79,7 +82,7 @@
         
       </div>
     
-    <div class="row">
+    <div class="row" id="flash">
       <div class="col-xs-12">
         
         <?php display_flash(); ?>

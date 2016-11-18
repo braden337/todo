@@ -14,16 +14,21 @@
       $statement->bindParam(':email', $email);
       $statement->bindParam(':password', $password);
       if ($statement->execute()) {
-        $_SESSION['flash_status'] = 'danger';
-        $_SESSION['flash_message'] = "You've registered successfully, now you can login";
+        $query = $conn->prepare('SELECT id, email FROM user WHERE email = ?');
+        $query->execute([$email]);
+        $user = $query->fetchObject();
+        $_SESSION['user'] = $user;
+        $_SESSION['flash_status'] = 'success';
+        $_SESSION['flash_message'] = "You've successfully registered and have been logged in.";
         header('Location: /');
+        exit();
       }
     }
 
 
   }
   
-  $title = "register";
+  $title = 'register';
   require 'header.php';
   
 ?>

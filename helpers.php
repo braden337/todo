@@ -18,3 +18,11 @@ function display_flash() {
     unset($_SESSION['flash_message']);
   endif;
 }
+
+function logged_in() {
+  return isset($_SESSION['user']);
+}
+
+function getUser() {
+  return $_SESSION['user'];
+}

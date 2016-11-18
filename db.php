@@ -4,7 +4,7 @@ $conn = new PDO('sqlite:../todo.db');
 
 $conn->exec('CREATE TABLE IF NOT EXISTS user (
                 id INTEGER PRIMARY KEY,
-                email TEXT,
+                email TEXT UNIQUE,
                 password TEXT
             );
             CREATE TABLE IF NOT EXISTS todo (

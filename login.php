@@ -2,16 +2,36 @@
   session_start();
   
   require 'db.php';
-  
-  // send flash message with results from form
+
   if (isset($_POST['email']) && isset($_POST['password'])) {
-    $email = htmlspecialchars($_POST['email']);
-    $password = htmlspecialchars($_POST['password']);
-    $_SESSION['flash_status'] = "danger";
-    $_SESSION['flash_message'] = "$email, $password";
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $query = $conn->prepare('SELECT password FROM user WHERE email = ?');
+    $query->execute([$email]);
+    $hash = $query->fetchObject();
+
+    if (password_verify($password, $hash->password)) {
+      $query = $conn->prepare('SELECT id, email FROM user WHERE email = ?');
+      $query->execute([$email]);
+      $user = $query->fetchObject();
+
+      $_SESSION['user'] = $user;
+      $_SESSION['flash_status'] = 'success';
+      $_SESSION['flash_message'] = "You've logged in.";
+      header('Location: /');
+      exit();
+    }
+    else {
+      $_SESSION['flash_status'] = 'danger';
+      $_SESSION['flash_message'] = 'Your email or password was wrong.';
+    }
+
+
   }
+
   
-  $title = "login";
+  $title = 'login';
   require 'header.php';
   
 ?>

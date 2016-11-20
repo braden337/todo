@@ -13,6 +13,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= isset($title)? ucfirst($title) : "I used todo" ?></title>
+  
   <link rel="stylesheet" href="/assets/bootstrap.min.css">
   <style type="text/css">
     #topNav {
@@ -39,7 +40,7 @@
     }
 
     #footer {
-      margin: 5em auto;
+      margin: 3em auto;
     }
 
     .todo {
@@ -49,6 +50,10 @@
 
     #instructions {
       display: none;
+    }
+
+    .love {
+      color: red;
     }
 
   </style>
@@ -70,7 +75,7 @@
           <ul class="nav navbar-nav">
             <?php foreach($pages as $page): ?>
             <li class="nav-item">
-              <a class="nav-link<?= !strcmp($page, $title) ? ' active' : '' ?>" href="/<?= $page ?>.php"><?= ucfirst($page) ?><?= isset($user) ? ', '.ucfirst($user->name) : '' ?></a>
+              <a class="nav-link<?= !strcmp($page, $title) ? ' hidden-xs-up' : '' ?>" href="/<?= $page ?>.php"><?= ucfirst($page) ?><?= isset($user) ? ', '.ucfirst($user->name) : '' ?></a>
             </li>
             <?php endforeach ?>
             <!--<li class="nav-item">-->

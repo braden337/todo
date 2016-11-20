@@ -64,7 +64,7 @@
     <form action="/register.php" method="POST">
       <div class="form-group">
         <label for="usernameInput">Username</label>
-        <input type="text" name="name" class="form-control" id="usernameInput" required>
+        <input type="text" name="name" class="form-control" id="usernameInput" autocapitalize="none" autocorrect="off" required>
       </div>
       <div class="form-group">
         <label for="passwordInput">Password</label>
@@ -72,10 +72,15 @@
       </div>
       <div class="form-group">
         <label for="passwordConfirmInput">Confirm Password</label>
-        <input type="password" name="confirmedPassword" class="form-control" id="passwordConfirmInput" >
+        <input type="password" name="confirmedPassword" class="form-control" id="passwordConfirmInput" required>
       </div>
-      <button type="submit" class="btn btn-primary btn-block" id="formSubmit" required>Submit</button>
+      <button type="submit" class="btn btn-primary btn-block" id="formSubmit" required><?= ucfirst($title) ?></button>
     </form>
+
+    <div class="text-xs-center">
+        <div class="text-small text-muted my-1">or</div>
+        <a href="/login.php">Login</a>
+      </div>
     
     </div> 
   </div>

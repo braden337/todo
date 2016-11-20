@@ -27,7 +27,7 @@
   $query->execute([$user->id]);
 
   $todos = $query->fetchAll(PDO::FETCH_OBJ);
-
+  // var_dump($todos);
 ?>
 
   <div class="row" id="instructions">
@@ -46,6 +46,7 @@
     
   <div class="card card-inverse bg-primary">
     <div class="card-block">
+    <h4 class="card-title">Create an item</h4>
     <form class="form" action="/" method="POST" validate>
         <div class="form-group">
           <!-- <label for="todoInput">Name</label> -->
@@ -60,7 +61,13 @@
 
 
   </div>
-
+    <?php  
+      if (empty($todos)) {
+        $todo = new stdClass;
+        $todo->description = "You don't have any items in your list yet, create one.";
+        $todos = array($todo);
+      }
+    ?>
         <?php foreach ($todos as $todo): ?>
     <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
       

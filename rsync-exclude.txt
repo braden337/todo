@@ -11,3 +11,4 @@ assets/javascripts/bootstrap
 assets/javascripts/bootstrap-sprockets.js
 assets/javascripts/bootstrap.js
 rsync-exclude.txt
+README.md

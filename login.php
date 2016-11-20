@@ -66,16 +66,22 @@
     <form action="/<?= $title ?>.php" method="POST">
       <div class="form-group">
         <label for="usernameInput">Username</label>
-        <input type="text" name="name" class="form-control" id="usernameInput">
+        <input type="text" name="name" class="form-control" id="usernameInput" autocapitalize="none" autocorrect="off" required>
       </div>
       <div class="form-group">
         <label for="passwordInput">Password</label>
-        <input type="password" name="password" class="form-control" id="passwordInput" >
+        <input type="password" name="password" class="form-control" id="passwordInput" required>
       </div>
-      <button type="submit" class="btn btn-primary btn-block" id="formSubmit">Submit</button>
+      <button type="submit" class="btn btn-primary btn-block" id="formSubmit"><?= ucfirst($title) ?></button>
     </form>
+
+      <div class="text-xs-center">
+        <div class="text-small text-muted my-1">or</div>
+        <a href="/register.php">Register</a>
+      </div>
     
-    </div> 
+    </div>
+
   </div>
   
   

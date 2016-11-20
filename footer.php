@@ -1,4 +1,5 @@
-  <div id="footer">
+  <div id="footer" class="col-xs-12 text-xs-center">
+    <div class="text-muted">made with <span class="love">&hearts;</span> by <a href="https://github.com/braden337/todo">braden</a></div>
   </div>
 
   </div>

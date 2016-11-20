@@ -43,6 +43,10 @@
       margin: 3em auto;
     }
 
+    #footer a {
+      font-style: italic;
+    }
+
     .todo {
       background-color: #333;
       /*border-color: #333;*/

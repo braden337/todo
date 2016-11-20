@@ -4,6 +4,7 @@
   
   $pages = logged_in() ? ['logout'] : ['register', 'login'];
   
+  $user = getUser();
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +70,7 @@
           <ul class="nav navbar-nav">
             <?php foreach($pages as $page): ?>
             <li class="nav-item">
-              <a class="nav-link<?= !strcmp($page, $title) ? ' active' : '' ?>" href="/<?= $page ?>.php"><?= ucfirst($page) ?></a>
+              <a class="nav-link<?= !strcmp($page, $title) ? ' active' : '' ?>" href="/<?= $page ?>.php"><?= ucfirst($page) ?><?= isset($user) ? ', '.ucfirst($user->name) : '' ?></a>
             </li>
             <?php endforeach ?>
             <!--<li class="nav-item">-->

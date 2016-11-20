@@ -12,8 +12,6 @@
     exit();
   }
 
-  $user = getUser();
-
   if (!empty($_POST['description'])) {
     $statement = $conn->prepare('INSERT INTO todo (description, user_id) VALUES (?, ?)');
     $statement->execute([$_POST['description'], $user->id]);

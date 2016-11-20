@@ -1,0 +1,13 @@
+node_modules
+.git
+.gitignore
+.DS_Store
+gulpfile.js
+package.json
+style.css.map
+assets/images/img
+assets/stylesheets
+assets/javascripts/bootstrap
+assets/javascripts/bootstrap-sprockets.js
+assets/javascripts/bootstrap.js
+rsync-exclude.txt

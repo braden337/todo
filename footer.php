@@ -1,4 +1,5 @@
   <div id="footer" class="col-xs-12 text-xs-center">
+    <?php if (isset($user) && $user) ?>
     <div class="text-muted">made with <span class="love">&hearts;</span> by <a href="https://github.com/braden337/todo">braden</a></div>
   </div>
 
@@ -7,10 +8,10 @@
   <script src="assets/bootstrap.min.js"></script>
   <script>
 
-    document.write('<script src="http://' +
-      (location.host || 'localhost').split(':')[0] +
-      ':35729/livereload.js?snipver=1"></' +
-      'script>');
+    // document.write('<script src="http://' +
+    //   (location.host || 'localhost').split(':')[0] +
+    //   ':35729/livereload.js?snipver=1"></' +
+    //   'script>');
 
     $(document).ready(function() {
 

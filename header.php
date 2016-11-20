@@ -40,7 +40,7 @@
     }
 
     #footer {
-      margin: 3em auto;
+      margin: 2em auto 2em auto;
     }
 
     #footer a {
@@ -60,7 +60,12 @@
       color: red;
     }
 
+    .g-recaptcha {
+      display: inline-block;
+    }
+
   </style>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head> 
 <body>
   
@@ -79,7 +84,7 @@
           <ul class="nav navbar-nav">
             <?php foreach($pages as $page): ?>
             <li class="nav-item">
-              <a class="nav-link<?= !strcmp($page, $title) ? ' hidden-xs-up' : '' ?>" href="/<?= $page ?>.php"><?= ucfirst($page) ?><?= isset($user) ? ', '.ucfirst($user->name) : '' ?></a>
+              <a class="nav-link<?= !strcmp($page, $title) ? ' hidden-xs-up' : '' ?>" href="/<?= $page ?>.php"><?= ucfirst($page) ?><?= isset($user) ? ', '.$user->name : '' ?></a>
             </li>
             <?php endforeach ?>
             <!--<li class="nav-item">-->

@@ -36,6 +36,20 @@
     #formSubmit {
       margin-top: 0.5em;
     }
+
+    #footer {
+      margin: 5em auto;
+    }
+
+    .todo {
+      background-color: #333;
+      /*border-color: #333;*/
+    }
+
+    #instructions {
+      display: none;
+    }
+
   </style>
 </head> 
 <body>
@@ -83,7 +97,7 @@
       </div>
     
     <div class="row" id="flash">
-      <div class="col-xs-12">
+      <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
         
         <?php display_flash(); ?>
       

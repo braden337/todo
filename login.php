@@ -3,31 +3,52 @@
   
   require 'db.php';
 
-  if (isset($_POST['email']) && isset($_POST['password'])) {
-    $email = $_POST['email'];
+  if (isset($_SESSION['user'])) {
+    header('Location: /');
+    exit();
+  }
+
+  if (!empty($_POST['name']) && !empty($_POST['password'])) {
+    $name = $_POST['name'];
     $password = $_POST['password'];
     
-    $query = $conn->prepare('SELECT password FROM user WHERE email = ?');
-    $query->execute([$email]);
+    $query = $conn->prepare('SELECT password FROM user WHERE name = ?');
+    $query->execute([$name]);
+    // var_dump($query);
+
     $hash = $query->fetchObject();
+    // var_dump($hash); exit;
+
+    if (!$hash) {
+      $_SESSION['flash_status'] = 'danger';
+      $_SESSION['flash_message'] = 'Your username or password was wrong.';
+      header('Location: /login.php');
+      exit();
+    }
+
+
 
     if (password_verify($password, $hash->password)) {
-      $query = $conn->prepare('SELECT id, email FROM user WHERE email = ?');
-      $query->execute([$email]);
+      $query = $conn->prepare('SELECT id, name FROM user WHERE name = ?');
+      $query->execute([$name]);
       $user = $query->fetchObject();
 
       $_SESSION['user'] = $user;
       $_SESSION['flash_status'] = 'success';
-      $_SESSION['flash_message'] = "You've logged in.";
+      $_SESSION['flash_message'] = "You are now logged in.";
       header('Location: /');
       exit();
     }
     else {
       $_SESSION['flash_status'] = 'danger';
-      $_SESSION['flash_message'] = 'Your email or password was wrong.';
+      $_SESSION['flash_message'] = 'Your username or password was wrong.';
     }
 
 
+  }
+  else if (isset($_POST['name']) && isset($_POST['password'])) {
+    $_SESSION['flash_status'] = 'danger';
+    $_SESSION['flash_message'] = "Can't be blank.";
   }
 
   
@@ -38,20 +59,20 @@
     
   <div class="row">
       
-    <div class="col-lg-4 offset-lg-4">
+    <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
       
     <h1><?= ucfirst($title) ?></h1>
     
     <form action="/<?= $title ?>.php" method="POST">
       <div class="form-group">
-        <label for="emailInput">Email address</label>
-        <input type="email" name="email" class="form-control" id="emailInput">
+        <label for="usernameInput">Username</label>
+        <input type="text" name="name" class="form-control" id="usernameInput">
       </div>
       <div class="form-group">
         <label for="passwordInput">Password</label>
         <input type="password" name="password" class="form-control" id="passwordInput" >
       </div>
-      <button type="submit" class="btn btn-primary" id="formSubmit">Submit</button>
+      <button type="submit" class="btn btn-primary btn-block" id="formSubmit">Submit</button>
     </form>
     
     </div> 

@@ -1,3 +1,6 @@
+  <div id="footer">
+  </div>
+
   </div>
   <script src="assets/jquery.min.js"></script>
   <script src="assets/bootstrap.min.js"></script>
@@ -10,11 +13,31 @@
 
     $(document).ready(function() {
 
+      if (!localStorage.learned) {
+        $('#instructions').show();
+      }
+
       setTimeout(function(){
-        $('#flash').slideUp();
+        $('#flash').slideUp({duration: 250, easing: 'swing'});
       }, 3000);
 
+      $('#todoInput').focus();
       
+      $('.todo').hover(function() {
+        $(this).toggleClass('bg-danger');
+      });
+
+      $('.todo').click(function() {
+        var id = $(this).attr('data-id');
+        if (confirm('Are you sure you want to delete this item?')) {
+          window.location = `/delete.php?id=${id}`;
+        }
+      });
+
+      $('#instructions').click(function() {
+        $('#instructions').hide();
+        localStorage.learned = true;
+      });
 
     });
   </script>

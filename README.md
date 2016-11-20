@@ -1,3 +1,3 @@
-# A little todo web app lol
+### A little todo web app
 
 This was fun, written in PHP

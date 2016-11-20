@@ -39,8 +39,12 @@
       margin-top: 0.5em;
     }
 
+    #theList {
+      min-height: 75vh;
+    }
+
     #footer {
-      margin: 2em auto 2em auto;
+      margin: 2em auto;
     }
 
     #footer a {

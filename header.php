@@ -39,7 +39,7 @@
       margin-top: 0.5em;
     }
 
-    #theList {
+    #theList, .aForm {
       min-height: 75vh;
     }
 
